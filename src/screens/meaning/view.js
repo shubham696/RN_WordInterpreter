@@ -6,6 +6,7 @@ class Meaning extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            word: '',
             wordDetails: '',
             wordMeanings: [],
             partOfSpeech: [],
@@ -19,7 +20,7 @@ class Meaning extends Component {
         fetch(`https://wordsapiv1.p.rapidapi.com/words/${word}`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "your api key here",
+                "x-rapidapi-key": "561f6baa81msh446727651a2b6a2p12a12ajsndb5c495c0569",
                 "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
             }
         })
@@ -44,6 +45,7 @@ class Meaning extends Component {
     }
 
     componentDidMount = () => {
+        this.setState({word: this.props.route.params.word})
         this.getMeaning()
         BackHandler.addEventListener("hardwareBackPress", this.showSearchPage)
     }
@@ -57,13 +59,29 @@ class Meaning extends Component {
         return true
     }
 
+    starTheWord = () => {
+        const {onStaredClicked, starredList, removeStarredWord} = this.props;
+        if(starredList && starredList.indexOf(this.state.word) < 0){
+            // this.props.dispatch(storeInStarredList(this.state.wo))
+            onStaredClicked(this.state.word);
+        }else{
+            removeStarredWord(this.state.word);
+        }
+    }
+
 
 
     render() {
+        const {starredList} = this.props;
         return (
             <View style={{ flex: 1 }}>
                 <View style={style.parentView}>
-                    <Text style={{ fontWeight: 'bold' }}>Meaning {" "}</Text>
+                <View style={style.titleView}>
+                    <Text style={{ fontWeight: 'bold' }}>{this.state.word} {" "}</Text>
+                </View>
+                <TouchableOpacity style={{position:'absolute', right: 10}} onPress={this.starTheWord}>
+                    <Text>{starredList && starredList.length > 0 && starredList.indexOf(this.state.word) >= 0 ? "Un-Star It" : "Star It!"}</Text>
+                </TouchableOpacity>
                 </View>
                 {!this.state.loading && !this.state.error && [this.state.wordMeanings && this.state.wordMeanings.length > 3 ? <View>
                     <View style={style.meaningView}>

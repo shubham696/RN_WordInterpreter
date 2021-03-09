@@ -17,7 +17,7 @@ class Search extends Component {
         fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%${searchText}%&limit=100`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "your api key here",
+                "x-rapidapi-key": "561f6baa81msh446727651a2b6a2p12a12ajsndb5c495c0569",
                 "x-rapidapi-host": "wordsapiv1.p.rapidapi.com"
             }
         })
@@ -61,7 +61,7 @@ class Search extends Component {
             <View style={{ flex: 1 }}>
                 <View style={style.searchBarView}>
                     <Image
-                        source={require('../assets/search_icon.png')}
+                        source={require('../../assets/search_icon.png')}
                         style={style.searchImage}
                         resizeMode="contain"
                     />

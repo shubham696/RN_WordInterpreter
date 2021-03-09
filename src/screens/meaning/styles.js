@@ -2,13 +2,18 @@ import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
     parentView:{
+        flexDirection:'row',
         height: 60, 
         paddingBottom: 10, 
         marginBottom: 10, 
-        justifyContent: 'center', 
-        alignItems: 'center', 
         borderColor: '#000', 
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
+        justifyContent: 'center', 
+        alignItems:'center'
+    },
+    titleView: {
+        // marginStart: '50%',
+        alignItems: 'center', 
     },
     meaningView: {
         flex: 1, 

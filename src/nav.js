@@ -1,8 +1,8 @@
 import React,{PureComponent} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Search from './search';
-import Meaning from './meaning';
+import Search from './screens/search';
+import Meaning from './screens/meaning';
 
 const Stack = createStackNavigator();
 class Navigation extends PureComponent {
